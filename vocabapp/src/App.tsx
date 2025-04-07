@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { vitalWords} from './assets/data/word-data'
+import { otherWords } from './assets/data/word-data'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  console.log(vitalWords["word_set0"])
   return (
     <>
       <div>
