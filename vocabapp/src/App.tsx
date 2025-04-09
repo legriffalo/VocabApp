@@ -1,28 +1,26 @@
-import { useState } from 'react'
 import { vitalWords} from './assets/data/word-data'
-import { otherWords } from './assets/data/word-data'
 import './App.css'
+import Header from './assets/components/header'
+import headerImage from './assets/fv.png';  // Import the image
+import Footer from './assets/components/footer'
+import SetSelect from './assets/components/setselect'
 
 function App() {
-  const [count, setCount] = useState(0)
-  console.log(vitalWords["word_set0"])
+  console.log(vitalWords["word_sets"]["word_set0"])
+
   return (
     <>
       <div>
-      
+        <Header title = "Suomi-vocab" image = {headerImage}></Header>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div className = "flex flex-wrap justify-center gap-2 mt-[10vh] h-[80vh] w-9/10 m-auto overflow-y-scroll border">
+      <SetSelect sets = {vitalWords}></SetSelect>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+
+      <Footer></Footer>
+
     </>
   )
 }
