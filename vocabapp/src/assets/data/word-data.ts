@@ -7,10 +7,11 @@ export interface VocabularyWord {
 
 export interface WordSets {
     [key: string]: VocabularyWord[];
+    // name:string; data:VocabularyWord[]
 };
 
-export interface VocabularyData {
-    word_sets: WordSets;
+export type VocabularyData = {
+    [key: string]: WordSets;
 };
 
 
