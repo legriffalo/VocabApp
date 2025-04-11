@@ -21,19 +21,19 @@ function App() {
   const [state, setState] = useState<State>({
     selected: [],
     view: "start",
-    activity: "default",
+    activity: "learn",
     setname: "",
   });
 
-  useEffect(() => {
-    const handleContextMenu = (e: Event) => {
-      e.preventDefault();
-    };
-    document.addEventListener('contextmenu', handleContextMenu);
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleContextMenu = (e: Event) => {
+  //     e.preventDefault();
+  //   };
+  //   document.addEventListener('contextmenu', handleContextMenu);
+  //   return () => {
+  //     document.removeEventListener('contextmenu', handleContextMenu);
+  //   };
+  // }, []);
 
   // change views
   const handleState = (newView: string, name: string, selection: VocabularyWord[]) => {
@@ -44,6 +44,13 @@ function App() {
       selected: selection
     }));
   };
+
+
+
+
+
+
+
   return (
     <>
       <div>
@@ -52,8 +59,8 @@ function App() {
 
       <div className = "flex flex-wrap justify-center gap-2 mt-[12vh] h-[80vh] w-19/20 m-auto overflow-y-scroll border rounded-xl no-scrollbar p-3">
       
-        {state.view=="start"? <SetSelect sets = {vitalWords} handler = {handleState}></SetSelect>:null}
-        {state.view == "practice"? <Practice name = {state.setname} set = {state.selected} state = {state} handler = {handleState}></Practice>:null}
+        {state.view=="start"? <SetSelect sets = {vitalWords} handlers = {handleState}></SetSelect>:null}
+        {state.view == "practice"? <Practice name = {state.setname} set = {state.selected} state = {state} handlers = {handleState}></Practice>:null}
         {state.view =="stats"? <Stats></Stats>:null}
       
       </div>
