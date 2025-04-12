@@ -1,55 +1,40 @@
-import {useState,useEffect} from 'react';
+import {useEffect} from 'react';
 import { vitalWords} from './assets/data/word-data'
 import Header from './assets/components/header'
 import headerImage from './assets/fv.png';  // Import the image
 import Footer from './assets/components/footer'
 import SetSelect from './assets/components/setselect'
 import Stats from './assets/components/stats'
-import {VocabularyWord} from './assets/data/word-data'
+// import {VocabularyWord} from './assets/data/word-data'
 import Practice from './assets/components/practice';
+import { useStateStore } from './store';
+import {useShallow } from 'zustand/shallow';
 import './App.css'
 
-interface State {
-  selected: VocabularyWord[];
-  view: string;
-  activity: string;
-  setname: string;
-}
 
 function App() {
-  // console.log(vitalWords["word_sets"])
-  const [state, setState] = useState<State>({
-    selected: [],
-    view: "start",
-    activity: "learn",
-    setname: "",
-  });
 
-  // useEffect(() => {
-  //   const handleContextMenu = (e: Event) => {
-  //     e.preventDefault();
-  //   };
-  //   document.addEventListener('contextmenu', handleContextMenu);
-  //   return () => {
-  //     document.removeEventListener('contextmenu', handleContextMenu);
-  //   };
-  // }, []);
-
-  // change views
-  const handleState = (newView: string, name: string, selection: VocabularyWord[]) => {
-    setState(prevState => ({
-      ...prevState,
-      view: newView,
-      setname: name,
-      selected: selection
-    }));
-  };
+  //access zustand to use states
+  const view = useStateStore(useShallow((state) => state.view));
 
 
-
-
-
-
+  // this handler can probably migrate to the component but after testing!
+  // const handleState = (newView: string, name: string, selection: VocabularyWord[]) => {
+  //   setView(newView);
+  //   setSetName(name);
+  //   setSelected(selection);
+  // };
+  
+  // turn on for publish but annoying in debugging
+  useEffect(() => {
+    const handleContextMenu = (e: Event) => {
+      e.preventDefault();
+    };
+    document.addEventListener('contextmenu', handleContextMenu);
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+    };
+  }, []);
 
   return (
     <>
@@ -59,9 +44,9 @@ function App() {
 
       <div className = "flex flex-wrap justify-center gap-2 mt-[12vh] h-[80vh] w-19/20 m-auto overflow-y-scroll border rounded-xl no-scrollbar p-3">
       
-        {state.view=="start"? <SetSelect sets = {vitalWords} handlers = {handleState}></SetSelect>:null}
-        {state.view == "practice"? <Practice name = {state.setname} set = {state.selected} state = {state} handlers = {handleState}></Practice>:null}
-        {state.view =="stats"? <Stats></Stats>:null}
+        {view === "start" ? (<SetSelect sets={vitalWords} />) : null}
+        {view === "practice" ? (<Practice/>) : null}
+        {view === "stats" ? <Stats /> : null}
       
       </div>
 
