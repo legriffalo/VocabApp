@@ -19,7 +19,8 @@ This is a redux of the original attempt at language app, with significant improv
 
 ### Install/files?
 This version will be hosted as a website in the first instance for testing before being pushed through capacitor to publish in IOS, Android and IONIC.exe formats
-
+ 
+<a href = "https://github.com/legriffalo/VocabApp/releases/tag/v_0_0_1"> TEST IT HERE </a>
 ### 🤝 Connect With Me
 <p align="left">
 <a href="https://www.linkedin.com/in/nick-griffiths-7b139198/">
